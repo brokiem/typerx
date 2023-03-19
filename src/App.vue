@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router"
 
-if (localStorage.theme === "auto") {
+if (localStorage.theme === "auto" || !localStorage.theme) {
   if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark")
     document.documentElement.style.setProperty("--color-background", "var(--vt-c-black)")
