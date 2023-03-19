@@ -5,8 +5,8 @@
     <div class="flex justify-center items-center h-screen">
       <div class="card max-w-5xl mx-5">
         <div class="text-center">
-          <h1 class="font-bold text-xl">Type Mania</h1>
-          <p class="mt-2">Type-mania is an exciting and challenging typing speed website where you can test your keyboard skills and improve your typing speed.</p>
+          <h1 class="font-bold text-xl">Typer-X</h1>
+          <p class="mt-2">Typer-X is a dynamic and engaging typing speed website that will help you improve your typing skills while having fun.</p>
         </div>
 
         <div class="flex justify-center mt-10">

@@ -1,2 +1,2 @@
-# type-mania
-Type-mania is an exciting and challenging typing speed website where you can test your keyboard skills and improve your typing speed.
+# TyperX
+Typer-X is a dynamic and engaging typing speed website that will help you improve your typing skills while having fun.
