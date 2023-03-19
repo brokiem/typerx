@@ -1,0 +1,15 @@
+@import "./base.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-1.5 px-4 rounded-[4px];
+  }
+
+  .card {
+    @apply p-4 bg-secondary rounded-md dark:bg-dark-secondary;
+  }
+}
