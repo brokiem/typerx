@@ -5,8 +5,8 @@
     <div class="flex justify-center items-center h-screen">
       <div class="card max-w-5xl mx-5">
         <div class="text-center">
-          <h1 class="font-bold text-xl">Typer-X</h1>
-          <p class="mt-2">Typer-X is a dynamic and engaging typing speed website that will help you improve your typing skills while having fun.</p>
+          <h1 class="font-bold text-xl">TyperX</h1>
+          <p class="mt-2">TyperX is a dynamic and engaging typing speed website that will help you improve your typing skills while having fun.</p>
         </div>
 
         <div class="flex justify-center mt-10">
