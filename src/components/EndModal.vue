@@ -51,6 +51,14 @@
                     />
                   </svg>
                   Your accuracy is {{ statsStore.accuracy === null ? "N/A" : statsStore.accuracy + "%" }}.
+                  <span v-if="statsStore.accuracy !== null && statsStore.accuracy >= 90">👍</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 80">🙂</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 70">😐</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 60">🙁</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 50">😞</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 30">😠</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 20">😤</span>
+                  <span v-else-if="statsStore.accuracy !== null && statsStore.accuracy >= 0">😡</span>
                 </p>
               </div>
 
