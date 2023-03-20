@@ -2,8 +2,15 @@
   <SettingModal />
 
   <div class="flex flex-col justify-center items-center mx-5">
-    <div class="max-w-5xl w-full mt-32">
-      <div class="flex gap-3">
+    <div class="max-w-5xl w-full mt-10">
+      <div class="flex select-none">
+        <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40" fill="currentColor" class="inline mr-3"><path d="M4.458 35q-1.125 0-1.958-.833-.833-.834-.833-1.959V9.458q0-1.125.833-1.958t1.958-.833h31.084q1.125 0 1.958.833t.833 1.958v22.75q0 1.125-.833 1.959-.833.833-1.958.833Zm8.334-6.167h14.416V26.5H12.792Zm-4.959-5.708h3.542v-3.5H7.833Zm6.959 0h3.5v-3.5h-3.5Zm6.916 0h3.5v-3.5h-3.5Zm6.917 0h3.542v-3.5h-3.542ZM7.833 16.292h3.542v-3.5H7.833Zm6.959 0h3.5v-3.5h-3.5Zm6.916 0h3.5v-3.5h-3.5Zm6.917 0h3.542v-3.5h-3.542Z"/></svg>
+        <a href="/" class="text-4xl font-bold text-center">
+          TyperX
+        </a>
+      </div>
+
+      <div class="flex gap-3 mt-16">
         <div class="card mb-3 py-2">Time Elapsed: {{ time_elapsed }}s</div>
         <div class="card mb-3 py-2">WPM: {{ wpm }}</div>
         <div class="card mb-3 py-2">CPM: {{ cpm }}</div>
