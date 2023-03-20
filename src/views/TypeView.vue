@@ -152,6 +152,10 @@ export default defineComponent({
     })
 
     document.onkeydown = (e) => {
+      if (this.is_end) {
+        return
+      }
+
       const word_element_prev = document.getElementById("word-" + (this.active_word_id - 1))
       const word_element = document.getElementById("word-" + this.active_word_id)
       const char_element = word_element?.children[this.active_text_id]
@@ -231,6 +235,10 @@ export default defineComponent({
         }
       } else {
         if (e.key === "Backspace") {
+          if (this.is_end) {
+            return
+          }
+
           this.is_wrong = false
           char_element?.classList.remove("bg-red-500")
           char_element?.classList.add("typing")
