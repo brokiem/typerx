@@ -121,6 +121,11 @@ export default defineComponent({
           textStore.text = "Error loading text"
         }
       })
+      .catch((error) => {
+        textStore.isTextLoaded = true
+        textStore.isTextProcessing = false
+        textStore.text = "Error loading text"
+      })
 
     return {
       textStore,
@@ -311,6 +316,11 @@ export default defineComponent({
           } else {
             this.textStore.text = "Error loading text"
           }
+        })
+        .catch((error) => {
+          this.textStore.isTextLoaded = true
+          this.textStore.isTextProcessing = false
+          this.textStore.text = "Error loading text"
         })
     }
   }
