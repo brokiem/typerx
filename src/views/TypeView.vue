@@ -1,5 +1,6 @@
 <template>
   <SettingModal />
+  <EndModal />
 
   <div class="flex flex-col justify-center items-center mx-5">
     <div class="max-w-5xl w-full mt-10">
@@ -11,10 +12,10 @@
       </div>
 
       <div class="flex gap-3 mt-16">
-        <div class="card mb-3 py-2">Time Elapsed: {{ time_elapsed }}s</div>
-        <div class="card mb-3 py-2">WPM: {{ wpm }}</div>
-        <div class="card mb-3 py-2">CPM: {{ cpm }}</div>
-        <div class="card mb-3 py-2">Accuracy: {{ accuracy === null ? "N/A" : accuracy + "%" }} {{ is_end ? `(${textStore.correctKeystrokes} of ${textStore.text.length} chars)` : "" }}</div>
+        <div class="card mb-3 py-2">Time Elapsed: {{ statsStore.time }}s</div>
+        <div class="card mb-3 py-2">WPM: {{ statsStore.wpm }}</div>
+        <div class="card mb-3 py-2">CPM: {{ statsStore.cpm }}</div>
+        <div class="card mb-3 py-2">Accuracy: {{ statsStore.accuracy === null ? "N/A" : statsStore.accuracy + "%" }} {{ is_end ? `(${textStore.correctKeystrokes} of ${textStore.text.length} chars)` : "" }}</div>
 
         <div class="grow"></div>
 
@@ -73,12 +74,14 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 import { useTextStore } from "@/stores/text"
-import { useSettingStore } from "@/stores/setting"
+import { useVariablesStore } from "@/stores/variables"
+import { useStatsStore } from "@/stores/stats"
 import SettingModal from "@/components/SettingModal.vue"
+import EndModal from "@/components/EndModal.vue"
 
 export default defineComponent({
   name: "TypeView",
-  components: { SettingModal },
+  components: { EndModal, SettingModal },
   data() {
     return {
       completed_text: "",
@@ -87,17 +90,14 @@ export default defineComponent({
       is_wrong: false,
       start_time: null as number | null,
       end_time: null as number | null,
-      time_elapsed: 0,
       time_elapsed_interval_id: undefined as number | undefined,
-      wpm: 0,
-      cpm: 0,
-      accuracy: null as number | null,
       is_end: false
     }
   },
   setup() {
     const textStore = useTextStore()
-    const settingStore = useSettingStore()
+    const variablesStore = useVariablesStore()
+    const statsStore = useStatsStore()
 
     textStore.isTextProcessing = true
     textStore.isTextLoaded = false
@@ -120,7 +120,8 @@ export default defineComponent({
 
     return {
       textStore,
-      settingStore
+      variablesStore,
+      statsStore
     }
   },
   mounted() {
@@ -131,6 +132,10 @@ export default defineComponent({
       char_element?.classList.add("typing")
     })
 
+    document.addEventListener("restart", () => {
+      this.restart();
+    });
+
     document.onkeydown = (e) => {
       const word_element_prev = document.getElementById("word-" + (this.active_word_id - 1))
       const word_element = document.getElementById("word-" + this.active_word_id)
@@ -138,13 +143,14 @@ export default defineComponent({
 
       if (e.key === char_element?.innerHTML) {
         document.getElementById("setting-button")?.blur()
+        document.getElementById("restart-button")?.blur()
 
         if (this.start_time === null) {
           this.start_time = Date.now()
-          this.time_elapsed += 1
+          this.statsStore.incrementTime();
 
           this.time_elapsed_interval_id = setInterval(() => {
-            this.time_elapsed += 1
+            this.statsStore.incrementTime();
           }, 1000)
         }
 
@@ -168,10 +174,11 @@ export default defineComponent({
           const { wpm, cpm } = this.calculateTypingSpeed(this.textStore.text, timeInSeconds)
           const accuracy = this.calculateTypingAccuracy(this.textStore.text, this.textStore.correctKeystrokes)
 
-          this.wpm = wpm
-          this.cpm = cpm
-          this.accuracy = accuracy
+          this.statsStore.wpm = wpm
+          this.statsStore.cpm = cpm
+          this.statsStore.accuracy = accuracy
           this.is_end = true
+          this.variablesStore.isResultOpen = true;
 
           this.start_time = null
           this.end_time = null
@@ -183,9 +190,9 @@ export default defineComponent({
           const { wpm, cpm } = this.calculateTypingSpeed(this.completed_text, timeInSeconds)
           const accuracy = this.calculateTypingAccuracy(this.textStore.text, this.textStore.correctKeystrokes)
 
-          this.wpm = wpm
-          this.cpm = cpm
-          this.accuracy = accuracy
+          this.statsStore.wpm = wpm
+          this.statsStore.cpm = cpm
+          this.statsStore.accuracy = accuracy
 
           word_element_prev?.classList.remove("underline")
           word_element?.classList.remove("underline")
@@ -230,7 +237,7 @@ export default defineComponent({
 
         if (!this.is_wrong) {
           this.textStore.correctKeystrokes -= 1
-          this.accuracy = this.calculateTypingAccuracy(this.textStore.text, this.textStore.correctKeystrokes)
+          this.statsStore.accuracy = this.calculateTypingAccuracy(this.textStore.text, this.textStore.correctKeystrokes)
         }
 
         this.is_wrong = true
@@ -250,7 +257,7 @@ export default defineComponent({
   },
   methods: {
     openSetting() {
-      this.settingStore.isOpen = true
+      this.variablesStore.isSettingOpen = true
       document.getElementById("setting-button")?.blur()
     },
     calculateTypingSpeed(text: string, timeInSeconds: number) {
@@ -276,11 +283,8 @@ export default defineComponent({
       this.completed_text = ""
       this.start_time = null
       this.end_time = null
-      this.time_elapsed = 0
       this.time_elapsed_interval_id = undefined
-      this.wpm = 0
-      this.cpm = 0
-      this.accuracy = null
+      this.statsStore.reset();
 
       if (this.textStore.isTextProcessing) {
         return

@@ -1,5 +1,5 @@
 <template>
-  <TransitionRoot appear :show="settingStore.isOpen" as="template">
+  <TransitionRoot appear :show="variablesStore.isSettingOpen" as="template">
     <Dialog as="div" @close="setOpen(false)" class="relative z-10">
       <TransitionChild as="template" enter="duration-25 ease-out" enter-from="opacity-0" enter-to="opacity-100" leave="duration-25 ease-in" leave-from="opacity-100" leave-to="opacity-0">
         <div class="fixed inset-0 bg-black bg-opacity-25" />
@@ -73,7 +73,7 @@
 
 <script>
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle, Listbox, ListboxButton, ListboxOptions, ListboxOption } from "@headlessui/vue"
-import { useSettingStore } from "@/stores/setting"
+import { useVariablesStore } from "@/stores/variables"
 import { defineComponent } from "vue"
 
 export default defineComponent({
@@ -90,14 +90,14 @@ export default defineComponent({
     DialogTitle
   },
   setup() {
-    const settingStore = useSettingStore()
+    const variablesStore = useVariablesStore()
 
     const setOpen = (value) => {
-      settingStore.isOpen = value
+      variablesStore.isSettingOpen = value
     }
 
     return {
-      settingStore,
+      variablesStore,
       setOpen
     }
   },
