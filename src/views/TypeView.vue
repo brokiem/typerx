@@ -267,6 +267,8 @@ export default defineComponent({
     restart() {
       document.getElementById("restart-button")?.blur()
 
+      clearInterval(this.time_elapsed_interval_id)
+
       this.is_end = false
       this.is_wrong = false
       this.active_word_id = 0
