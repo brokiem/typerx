@@ -119,7 +119,7 @@ export default defineComponent({
     textStore.text = ""
 
     const sentenceCount = localStorage.getItem("sentence_count") || "2"
-    fetch(`https://rest-type-mania.hop.sh/sentences/${sentenceCount}`)
+    fetch(`https://typerx-api.cyclic.app/sentences/${sentenceCount}`)
       .then((response) => response.json())
       .then((data) => {
         textStore.isTextLoaded = true
@@ -330,7 +330,7 @@ export default defineComponent({
       this.textStore.text = ""
 
       const sentenceCount = localStorage.getItem("sentence_count") || "2"
-      fetch(`https://rest-type-mania.hop.sh/sentences/${sentenceCount}`)
+      fetch(`https://typerx-api.cyclic.app/sentences/${sentenceCount}`)
         .then((response) => response.json())
         .then((data) => {
           this.textStore.isTextLoaded = true
