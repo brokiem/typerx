@@ -83,6 +83,8 @@
       </div>
     </div>
   </div>
+
+  <input id="invisible-input" class="pointers-none ml-[-25%]" />
 </template>
 
 <script lang="ts">
@@ -167,6 +169,10 @@ export default defineComponent({
       if (this.is_end) {
         return
       }
+
+      const invisible_input = document.getElementById("invisible-input") as HTMLInputElement | null;
+      invisible_input!.focus();
+      invisible_input!.value = "";
 
       const word_element_prev = document.getElementById("word-" + (this.active_word_id - 1))
       const word_element = document.getElementById("word-" + this.active_word_id)
