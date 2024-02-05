@@ -1758,20 +1758,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^9.18.1":
-  version: 9.18.1
-  resolution: "eslint-plugin-vue@npm:9.18.1"
+"eslint-plugin-vue@npm:^9.21.1":
+  version: 9.21.1
+  resolution: "eslint-plugin-vue@npm:9.21.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
     natural-compare: "npm:^1.4.0"
     nth-check: "npm:^2.1.1"
     postcss-selector-parser: "npm:^6.0.13"
     semver: "npm:^7.5.4"
-    vue-eslint-parser: "npm:^9.3.1"
+    vue-eslint-parser: "npm:^9.4.2"
     xml-name-validator: "npm:^4.0.0"
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
-  checksum: 012ab26961219cc4b4c878b95d4b8feb4489ee223fb7fd02bafa908fa0965d47b98537dfa5fac6d803be8295e1e181fc70860bd7f1a2056654c38b8763785af1
+  checksum: 475e3ac855f5356f3d43eff788615803f7f13a278465b9629694d9dc8e97db9f2c1b13b572b01598b47342903d47f28c267b00fbfdc60b8ecbe37af62a179d79
   languageName: node
   linkType: hard
 
@@ -4447,7 +4447,7 @@ __metadata:
     "@vue/tsconfig": "npm:^0.4.0"
     autoprefixer: "npm:^10.4.16"
     eslint: "npm:^8.52.0"
-    eslint-plugin-vue: "npm:^9.18.1"
+    eslint-plugin-vue: "npm:^9.21.1"
     npm-run-all: "npm:^4.1.5"
     pinia: "npm:^2.1.7"
     postcss: "npm:^8.4.31"
@@ -4635,6 +4635,23 @@ __metadata:
   peerDependencies:
     eslint: ">=6.0.0"
   checksum: 2495cd855b8a0969e1d1a109762e54d4302429ebd87c21212de38fc60ea774be1bc001dc86338d3f78e17ae79d80fa633a8c409d7a65990cde9bc04484dac933
+  languageName: node
+  linkType: hard
+
+"vue-eslint-parser@npm:^9.4.2":
+  version: 9.4.2
+  resolution: "vue-eslint-parser@npm:9.4.2"
+  dependencies:
+    debug: "npm:^4.3.4"
+    eslint-scope: "npm:^7.1.1"
+    eslint-visitor-keys: "npm:^3.3.0"
+    espree: "npm:^9.3.1"
+    esquery: "npm:^1.4.0"
+    lodash: "npm:^4.17.21"
+    semver: "npm:^7.3.6"
+  peerDependencies:
+    eslint: ">=6.0.0"
+  checksum: 79593073adbce8971565133c70a203f12f0be0f8c5e3a4063796fd56e5de64f1f3ad7f91be5a787a7a3fe751306ed22086ee8369d52725be95f452827ce670de
   languageName: node
   linkType: hard
 
